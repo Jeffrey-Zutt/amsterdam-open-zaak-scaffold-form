@@ -104,7 +104,9 @@ export const parseSchemaObjectToFormDefinition = (schemaObject:SchemaObject, pre
           .setHorizontal("mobileS") // Align fields horizontally by default
           .getFields()
 
-        delete scaffoldFields["submit"]
+        if (scaffoldFields["submit"]) {
+          delete scaffoldFields["submit"]
+        }
 
         acc[key] = {
           type: "ArrayField",
