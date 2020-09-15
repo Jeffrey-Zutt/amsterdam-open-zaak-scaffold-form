@@ -104,14 +104,12 @@ export const parseSchemaObjectToFormDefinition = (schemaObject:SchemaObject, pre
           .setHorizontal("mobileS") // Align fields horizontally by default
           .getFields()
 
-        if (scaffoldFields["submit"]) {
-          delete scaffoldFields["submit"]
-        }
+        const { submit, ...myScaffoldFields } = scaffoldFields
 
         acc[key] = {
           type: "ArrayField",
           props: {
-            scaffoldFields,
+            scaffoldFields: myScaffoldFields,
             allowAdd: true,
             allowRemove: true,
             columns: equalColumns(Object.keys(scaffoldFields).length, true),
